@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: employee-mgmt-app
+  labels:
+    author: Swapnil
+    type: demo
+spec:
+  imagePullSecrets:
+   - name: ecr-registry-key
+  containers:
+    - name: employee-mgmt-svc
+      image: 646382203106.dkr.ecr.ap-south-1.amazonaws.com/demo-registry:emp_mgmt
+      imagePullPolicy: Always
+...
