@@ -4,11 +4,9 @@ kind: Service
 metadata:
  name: emp-mgmt-svc
 spec:
- type: NodePort
+ type: LoadBalancer
  ports:
-  - targetPort: 8080
     port: 8080
-    nodePort: 30006
  selector:
   author: Swapnil
   type: demo
