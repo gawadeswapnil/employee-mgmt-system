@@ -23,6 +23,6 @@ spec:
     - name: ecr-registry-key
    containers:
     - name: emp-mgmt-app
-      image: 646382203106.dkr.ecr.ap-south-1.amazonaws.com/demo-registry:emp_mgmt
+      image: 646382203106.dkr.ecr.ap-south-1.amazonaws.com/demo-registry:latest
       imagePullPolicy: Always
 ...
