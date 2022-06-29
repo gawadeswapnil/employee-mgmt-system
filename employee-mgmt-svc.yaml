@@ -6,8 +6,8 @@ metadata:
 spec:
  type: LoadBalancer
  ports:
-    port: 8080
-    protocol: TCP
+ - port: 8080
+   protocol: TCP
  selector:
   author: Swapnil
   type: demo
