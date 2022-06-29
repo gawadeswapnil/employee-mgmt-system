@@ -25,5 +25,6 @@ spec:
     - name: emp-mgmt-app
       image: 646382203106.dkr.ecr.ap-south-1.amazonaws.com/demo-registry:latest
       imagePullPolicy: Always
-      containerPort: 8080
-...
+      ports:
+       - containerPort: 8080
+       ...
