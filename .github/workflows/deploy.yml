@@ -6,9 +6,7 @@ on:
   workflow_dispatch:
   push: 
     branches: [test]
-    paths:  
-      - "src/**"
-      - ".github/workflows/deploy.yaml"
+
 jobs:
   build:
 
