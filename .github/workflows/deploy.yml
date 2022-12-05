@@ -8,6 +8,7 @@ on:
     branches: [test]
     paths: 
       - "src/**"
+      - ".github/workflows/deploy.yaml"
 
 jobs:
   build:
