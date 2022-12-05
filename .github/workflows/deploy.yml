@@ -4,8 +4,11 @@
 name: Employee Management System
 on:
   workflow_dispatch:
-  push:
-    branches: [ "test" ]
+  push: 
+    branches: [test]
+    paths:  
+      - "src/**"
+      - ".github/workflows/deploy.yaml"
 jobs:
   build:
 
