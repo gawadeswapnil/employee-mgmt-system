@@ -12,6 +12,7 @@ on:
         required: true
 jobs:
   App-Build:
+    if: github.event.inputs.environment == 'development'
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.build.outputs.version }}
@@ -21,6 +22,7 @@ jobs:
         run: echo "version=sample" >> "$GITHUB_OUTPUT"
         
   Dev-Deploy:
+    if: github.event.inputs.environment == 'development'
     needs: App-Build
     runs-on: ubuntu-latest
     steps:
@@ -32,7 +34,6 @@ jobs:
     if: github.event.inputs.environment == 'staging'
     environment: staging
     runs-on: ubuntu-latest
-    needs: Dev-Deploy
     steps:
     - env:
         VERSION: ${{ needs.App-Build.outputs.version }}
