@@ -8,14 +8,14 @@ on:
     inputs:
       environment:
         description: 'Where to deploy (development/staging)?'
-        default: 'development'
+        default: 'staging'
         required: true
 jobs:
   App-Build:
     runs-on: ubuntu-latest
     steps:
       - name: set variables
-        run: echo "version=1.0.0" >> $GITHUB_ENV
+        run: echo "version=1.0.0" >> $GITHUB_OUTPUT
       - run: echo "${{ env.version }}"
         
   Dev-Deploy:
@@ -36,5 +36,5 @@ jobs:
       run: |
         echo "Deployed in: ${{ github.event.inputs.environment }}"
         echo "AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}"
-        echo "${{ env.version }}"
+        echo "${{ needs.App-Build.outputs.version }}"
     
