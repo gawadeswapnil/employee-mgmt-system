@@ -14,7 +14,7 @@ jobs:
   App-Build:
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.step1.outputs.myoutput }}
+      version: ${{ steps.step1.outputs.version }}
     steps:
       - name: set variables
         id: step1
@@ -25,11 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     -  run: |
-        echo ${{ needs.App-Build.outputs.version }}
         echo "Application is deployed into development environment"
         
   Staging-Deploy:
-    needs: [Dev-Deploy]
+    needs: [App-Build, Dev-Deploy]
     if: github.event.inputs.environment == 'staging'
     environment: staging
     runs-on: ubuntu-latest
