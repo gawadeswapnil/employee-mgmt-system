@@ -14,7 +14,7 @@ jobs:
   App-Build:
     runs-on: ubuntu-latest
     outputs:
-      final_version: ${{ steps.build.outputs.version }}
+      version: ${{ steps.build.outputs.version }}
     steps:
       - name: set variables
         id: build
@@ -34,11 +34,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: Dev-Deploy
     steps:
-    - name: Disply parameters
-      env:
-        FINAL_VERSION: ${{ needs.App-Build.outputs.final_version }}
+    - env:
+        VERSION: ${{ needs.App-Build.outputs.version }}
       run: |
         echo "Deployed in: ${{ github.event.inputs.environment }}"
         echo "AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}"
-        echo "$FINAL_VERSION"
+        echo "$VERSION"
     
