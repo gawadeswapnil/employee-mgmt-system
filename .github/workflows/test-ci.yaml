@@ -14,20 +14,19 @@ jobs:
   App-Build:
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.build.outputs.version }}
+      myoutput: ${{ steps.step1.outputs.myoutput }}
     steps:
       - name: set variables
-        id: build
-        run: echo "version=sample" >> "$GITHUB_OUTPUT"
+        id: step1
+        run: echo "myoutput='1.0.0'" >> $GITHUB_OUTPUT
         
   Dev-Deploy:
     needs: App-Build
     runs-on: ubuntu-latest
     steps:
-    - env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      run: |
+    -  run: |
         echo "Application is deployed into development environment"
+        
   Staging-Deploy:
     needs: Dev-Deploy
     if: github.event.inputs.environment == 'staging'
@@ -37,5 +36,5 @@ jobs:
     -  run: |
         echo "Deployed in: ${{ github.event.inputs.environment }}"
         echo "AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}"
-        echo "${{ needs.App-Build.outputs.version }}"
+        echo ${{ needs.App-Build.outputs.myoutput }}
     
