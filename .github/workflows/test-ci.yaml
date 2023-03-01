@@ -20,10 +20,12 @@ jobs:
     environment: staging
     runs-on: ubuntu-latest
     steps:
+    - env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
     - run: |
         echo "${{ github.event.inputs.IMAGE_TAG }}"
         echo "${{ github.event.inputs.environment }}"
-        echo "${{ secrets.AWS_ACCESS_KEY_ID }}"
+        echo "${{ AWS_ACCESS_KEY_ID }}"
   production:
     if: github.event.inputs.environment == 'production'
     environment: production
