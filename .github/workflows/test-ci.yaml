@@ -16,7 +16,8 @@ jobs:
     steps:
       - name: set variables
         run: echo "version=1.0.0" >> $GITHUB_OUTPUT
-      - run: echo "${{ env.version }}"
+    outputs:
+      version: ${{ steps.App-Build.outputs.version }}
         
   Dev-Deploy:
     needs: App-Build
