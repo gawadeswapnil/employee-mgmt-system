@@ -16,5 +16,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - run: ${{ env.IMAGE_TAG }}
-    - run: echo "Testing CI/CD using manual trigger"
+    - run: |
+        echo "${{ github.event.inputs.IMAGE_TAG }}"
+        echo "Testing CI/CD using manual trigger"
