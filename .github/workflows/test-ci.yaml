@@ -15,7 +15,13 @@ on:
         required: true
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: set variables
+        run: echo version=1.0.0 >> $GITHUB_ENV  
   staging:
+    needs: build
     environment: staging
     runs-on: ubuntu-latest
     steps:
@@ -25,6 +31,7 @@ jobs:
         echo "${{ github.event.inputs.IMAGE_TAG }}"
         echo "${{ github.event.inputs.environment }}"
         echo "${{ env.AWS_ACCESS_KEY_ID }}"
+        echo "${env.version}"
   production:
     if: github.event.inputs.environment == 'production'
     environment: production
