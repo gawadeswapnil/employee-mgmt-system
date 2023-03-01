@@ -10,8 +10,6 @@ on:
         description: 'Where to deploy (development/staging)?'
         default: 'development'
         required: true
-      IMAGE_TAG:
-        description: 'Image that needs to be deployed into staging'
 jobs:
   App-Build:
     runs-on: ubuntu-latest
@@ -19,27 +17,22 @@ jobs:
       - name: set variables
         run: echo "::set-output name=version::1.0.0"  
     outputs:
-      version: ${{ steps.build.outputs.version }}
+      version: ${{ steps.App-Build.outputs.version }}
   Dev-Deploy:
     needs: App-Build
-    environment: staging
     runs-on: ubuntu-latest
     steps:
     - env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       run: |
-        echo "${{ github.event.inputs.IMAGE_TAG }}"
-        echo "${{ github.event.inputs.environment }}"
-        echo "${{ env.AWS_ACCESS_KEY_ID }}"
-        echo "${{ needs.setup.outputs.version }}"
-  staging:
+        echo "Application is deployed into development environment"
+  Staging-Deploy:
     if: github.event.inputs.environment == 'staging'
     environment: staging
     runs-on: ubuntu-latest
     needs: Dev-Deploy
     steps:
     - run: |
-        echo "Image to be deployed: ${{ github.event.inputs.IMAGE_TAG }}"
         echo "Deployed in: ${{ github.event.inputs.environment }}"
         echo "AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}"
         echo "version: ${{ needs.setup.outputs.version }}"
