@@ -25,6 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     -  run: |
+        echo ${{ needs.App-Build.outputs.myoutput }}
         echo "Application is deployed into development environment"
         
   Staging-Deploy:
