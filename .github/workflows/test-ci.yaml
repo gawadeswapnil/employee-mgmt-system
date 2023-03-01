@@ -11,6 +11,7 @@ on:
         required: true
       environment:
         description: 'Where to deploy (staging/production)?'
+        default: 'staging'
         required: true
 
 jobs:
@@ -22,7 +23,7 @@ jobs:
     - run: |
         echo "${{ github.event.inputs.IMAGE_TAG }}"
         echo "${{ github.event.inputs.environment }}"
-        echo "${{ github.secrets.AWS_ACCESS_KEY_ID }}"
+        echo "${{ secrets.AWS_ACCESS_KEY_ID }}"
   production:
     if: github.event.inputs.environment == 'production'
     environment: production
