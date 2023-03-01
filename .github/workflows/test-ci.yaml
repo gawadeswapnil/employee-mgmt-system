@@ -24,7 +24,7 @@ jobs:
     steps:
     - id: step1 
       run: |
-        run: echo "version='1.0.0'" >> $GITHUB_OUTPUT
+        echo "version='1.0.0'" >> $GITHUB_OUTPUT
         echo "Application is deployed into development environment"
         
   Staging-Deploy:
