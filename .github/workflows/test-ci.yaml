@@ -10,7 +10,7 @@ on:
         description: 'IMAGE_TAG'
         required: true
       environment:
-        description: 'Where to deploy (staging/prod)?'
+        description: 'Where to deploy (staging/production)?'
         required: true
 
 jobs:
@@ -32,5 +32,5 @@ jobs:
     - run: |
         echo "${{ github.event.inputs.IMAGE_TAG }}"
         echo "${{ github.event.inputs.environment }}"
-        echo "${{ github.secrets.AWS_ACCESS_KEY_ID }}"
+        echo "${{ secrets.AWS_ACCESS_KEY_ID }}"
     
