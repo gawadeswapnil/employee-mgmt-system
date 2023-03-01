@@ -22,7 +22,7 @@ jobs:
     - run: |
         echo "${{ github.event.inputs.IMAGE_TAG }}"
         echo "${{ github.event.inputs.environment }}"
-        echo "${{ github.secrets.AWS_SECRET_ID }}"
+        echo "${{ github.secrets.AWS_ACCESS_KEY_ID }}"
   production:
     if: github.event.inputs.environment == 'production'
     environment: production
@@ -32,5 +32,5 @@ jobs:
     - run: |
         echo "${{ github.event.inputs.IMAGE_TAG }}"
         echo "${{ github.event.inputs.environment }}"
-        echo "${{ github.secrets.AWS_SECRET_ID }}"
+        echo "${{ github.secrets.AWS_ACCESS_KEY_ID }}"
     
