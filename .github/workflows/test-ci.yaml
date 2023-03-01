@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: set variables
         id: build
-        run: echo "version=1.0.0" >> "$GITHUB_OUTPUT"
+        run: echo "version=sample" >> "$GITHUB_OUTPUT"
         
   Dev-Deploy:
     needs: App-Build
