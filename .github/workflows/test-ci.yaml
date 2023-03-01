@@ -9,13 +9,12 @@ on:
       IMAGE_TAG:
         description: 'IMAGE_TAG'
         required: true
-  push:
-    branches: [ "develop" ]
+  #push:
+    #branches: [ "develop" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        echo ${{ env.IMAGE_TAG }}
-        echo "Testing CI/CD using manual trigger"
+    - run: ${{ env.IMAGE_TAG }}
+    - run: echo "Testing CI/CD using manual trigger"
