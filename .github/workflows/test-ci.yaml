@@ -20,7 +20,8 @@ jobs:
     environment: staging
     runs-on: ubuntu-latest
     steps:
-    - env:
+    - name: Reading secret values
+      env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
     - run: |
         echo "${{ github.event.inputs.IMAGE_TAG }}"
