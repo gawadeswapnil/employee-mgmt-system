@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: set variables
-        run: echo "version::1.0.0" >> $GITHUB_ENV
+        run: echo "version=1.0.0" >> $GITHUB_ENV
       - run: echo "${{ env.version }}"
         
   Dev-Deploy:
