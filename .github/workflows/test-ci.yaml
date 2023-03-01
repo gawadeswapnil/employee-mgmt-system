@@ -13,11 +13,12 @@ on:
 jobs:
   App-Build:
     runs-on: ubuntu-latest
-    steps:
-      - name: set variables
-        run: echo "version=1.0.0" >> $GITHUB_OUTPUT
     outputs:
       version: ${{ steps.App-Build.outputs.version }}
+    steps:
+      - name: set variables
+        id: App-Build
+        run: echo "version=1.0.0" >> $GITHUB_OUTPUT
         
   Dev-Deploy:
     needs: App-Build
@@ -35,9 +36,9 @@ jobs:
     steps:
     - name: Disply parameters
       env:
-        final_version: ${{ needs.App-Build.outputs.version }}
+        version: ${{ needs.App-Build.outputs.version }}
       run: |
         echo "Deployed in: ${{ github.event.inputs.environment }}"
         echo "AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}"
-        echo "$final_version"
+        echo $version
     
