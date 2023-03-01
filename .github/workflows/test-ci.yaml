@@ -15,9 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: set variables
-        run: echo "::set-output name=version::1.0.0"  
-    outputs:
-      version: ${{ steps.App-Build.outputs.version }}
+        run: echo "version::1.0.0"  >> $GITHUB_OUTPUT
+        
   Dev-Deploy:
     needs: App-Build
     runs-on: ubuntu-latest
