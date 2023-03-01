@@ -16,7 +16,6 @@ on:
 
 jobs:
   staging:
-    if: github.event.inputs.environment == 'staging'
     environment: staging
     runs-on: ubuntu-latest
     steps:
