@@ -31,14 +31,13 @@ jobs:
       run: |
         echo "Application is deployed into development environment"
   Staging-Deploy:
+    needs: Dev-Deploy
     if: github.event.inputs.environment == 'staging'
     environment: staging
     runs-on: ubuntu-latest
     steps:
-    - env:
-        VERSION: ${{ needs.App-Build.outputs.version }}
-      run: |
+    -  run: |
         echo "Deployed in: ${{ github.event.inputs.environment }}"
         echo "AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}"
-        echo "$VERSION"
+        echo "${{ needs.App-Build.outputs.version }}"
     
