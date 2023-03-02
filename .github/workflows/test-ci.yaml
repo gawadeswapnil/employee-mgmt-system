@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.inputs.environment == 'development'
     steps:
-      - run: echo "All unit testsa are executed successfully"
+      - run: echo "All unit test are executed successfully"
       
   App-Build:
     runs-on: ubuntu-latest
