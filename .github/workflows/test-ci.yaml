@@ -8,29 +8,33 @@ on:
     inputs:
       environment:
         description: 'Where to deploy (development/staging)?'
-        default: 'staging'
+        default: 'development'
         required: true
 jobs:
   Unit-Test:
     runs-on: ubuntu-latest
+    if: github.event.inputs.environment == 'development'
     steps:
       - run: echo "All unit testsa are executed successfully"
       
   App-Build:
     runs-on: ubuntu-latest
     needs: Unit-Test
+    if: github.event.inputs.environment == 'development'
     steps:
       - run: echo "Application build successfully"
       
   Docker-Build:
     runs-on: ubuntu-latest
     needs: App-Build
+    if: github.event.inputs.environment == 'development'
     steps:
       - run: echo "Application build successfully using Dockerfile" 
       
   Dev-Deploy:
-    needs: Docker-Build
     runs-on: ubuntu-latest
+    needs: Docker-Build
+    if: github.event.inputs.environment == 'development'
     outputs:
       version: ${{ steps.step1.outputs.version }}
     steps:
