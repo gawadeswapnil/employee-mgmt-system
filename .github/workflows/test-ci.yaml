@@ -54,14 +54,4 @@ jobs:
         echo "Deployed in: ${{ github.event.inputs.environment }}"
         echo "AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}"
         echo ${{ needs.Dev-Deploy.outputs.version }}
-  Production-Deploy:
-    if: github.event.inputs.environment == 'production'
-    environment: production
-    runs-on: ubuntu-latest
-    steps:
-    - name: Setting up environment variables
-      run: |
-        echo "Deployed in: ${{ github.event.inputs.environment }}"
-        echo "AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}"
-        echo ${{ needs.Dev-Deploy.outputs.version }}
     
