@@ -42,6 +42,7 @@ jobs:
       run: echo "Deployed into Staging"
         
   Staging:
+    needs: QA
     environment: staging
     runs-on: ubuntu-latest
     steps:
